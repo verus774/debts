@@ -5,13 +5,22 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.DividerItemDecoration;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.List;
+
 
 public class DebtListFragment extends Fragment {
+    private RecyclerView mDebtRecyclerView;
+    private DebtAdapter mAdapter;
+    private FloatingActionButton mAddDebtFab;
+
 
     public DebtListFragment() {
     }
@@ -23,6 +32,13 @@ public class DebtListFragment extends Fragment {
         Toolbar toolbar = (Toolbar) view.findViewById(R.id.toolbar);
         ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
 
+        mDebtRecyclerView = (RecyclerView) view.findViewById(R.id.debt_recycler_view);
+        LinearLayoutManager lm = new LinearLayoutManager(getActivity());
+        mDebtRecyclerView.setLayoutManager(lm);
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(getActivity(), lm.getOrientation());
+        mDebtRecyclerView.addItemDecoration(dividerItemDecoration);
+        updateList();
+
         FloatingActionButton fab = (FloatingActionButton) view.findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -33,5 +49,11 @@ public class DebtListFragment extends Fragment {
         });
 
         return view;
+    }
+
+    private void updateList() {
+        List<Debt> debts = DebtLab.getAll();
+        mAdapter = new DebtAdapter(debts);
+        mDebtRecyclerView.setAdapter(mAdapter);
     }
 }
