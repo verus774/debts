@@ -1,9 +1,9 @@
 package by.verus.debts;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
@@ -49,16 +49,22 @@ public class DebtListFragment extends Fragment {
         mDebtRecyclerView.addItemDecoration(dividerItemDecoration);
         updateList();
 
-        FloatingActionButton fab = (FloatingActionButton) view.findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
+        mAddDebtFab = (FloatingActionButton) view.findViewById(R.id.add_debt_fab);
+        mAddDebtFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Intent intent = new Intent(getActivity(), DebtAddActivity.class);
+                startActivity(intent);
             }
         });
 
         return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        updateList();
     }
 
     @Override
