@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">Debts</string>
     <string name="action_settings">Settings</string>
+
+    <string name="menu_clear_all">Clear all</string>
+    <string name="menu_generate_debts">Generate debts</string>
+
 </resources>

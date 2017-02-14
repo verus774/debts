@@ -2,6 +2,7 @@ package by.verus.debts;
 
 
 import com.activeandroid.ActiveAndroid;
+import com.activeandroid.query.Delete;
 import com.activeandroid.query.Select;
 
 import java.util.Calendar;
@@ -50,5 +51,9 @@ public class DebtLab {
             ActiveAndroid.endTransaction();
         }
 
+    }
+
+    public static void deleteAll() {
+        new Delete().from(Debt.class).execute();
     }
 }
