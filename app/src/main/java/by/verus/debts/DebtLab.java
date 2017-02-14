@@ -39,12 +39,12 @@ public class DebtLab {
                 Date date = calendar.getTime();
 
                 Debt newDebt = new Debt();
+
                 newDebt.setName("Vasya " + i);
                 newDebt.setSum(i * 100);
                 newDebt.setDate(date);
-                save(newDebt);
 
-//                save(new Debt("Vasya " + i, i * 100, date));
+                save(newDebt);
             }
             ActiveAndroid.setTransactionSuccessful();
         } finally {

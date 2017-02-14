@@ -8,6 +8,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,6 +37,7 @@ public class DebtAddFragment extends Fragment implements DatePickerDialog.OnDate
     private AwesomeValidation mAwesomeValidation;
 
     private final static int CONTACT_PICKER = 1;
+    private static final String DIALOG_DATE = "DialogDate";
 
 
     public DebtAddFragment() {
@@ -63,9 +65,9 @@ public class DebtAddFragment extends Fragment implements DatePickerDialog.OnDate
         mDebtDateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*FragmentManager manager = getFragmentManager();
+                FragmentManager manager = getFragmentManager();
                 DatePickerFragment dialog = DatePickerFragment.newInstance(new Date(), DebtAddFragment.this);
-                dialog.show(manager, "DialogDate");*/
+                dialog.show(manager, DIALOG_DATE);
             }
         });
 
@@ -82,9 +84,6 @@ public class DebtAddFragment extends Fragment implements DatePickerDialog.OnDate
                 if (mAwesomeValidation.validate()) {
                     mDebt.setName(mDebtNameEditText.getText().toString());
                     mDebt.setSum(Integer.parseInt(mDebtSumEditText.getText().toString()));
-
-                    // TODO add date dialog
-                    mDebt.setDate(new Date());
 
                     DebtLab.save(mDebt);
 
