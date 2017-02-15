@@ -10,5 +10,6 @@
     <string name="save">Save</string>
 
     <string name="err_required">Required field</string>
+    <string name="delete">Delete</string>
 
 </resources>

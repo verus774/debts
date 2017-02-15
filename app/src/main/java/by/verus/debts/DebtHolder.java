@@ -4,7 +4,9 @@ package by.verus.debts;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 
 public class DebtHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -32,6 +34,32 @@ public class DebtHolder extends RecyclerView.ViewHolder implements View.OnClickL
         mNameTextView.setText(mDebt.getName());
         mSumTextView.setText(String.valueOf(mDebt.getSum()));
         mDateTextView.setText(mDebt.getDate().toString());
+
+        mMoreTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(final View v) {
+                final Context context = v.getContext();
+
+                PopupMenu popup = new PopupMenu(context, v);
+                popup.inflate(R.menu.menu_item_debt);
+
+                popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        switch (item.getItemId()) {
+                            case R.id.menu_delete_debt:
+                                DebtLab.deleteById(mDebt.getId());
+
+                                return true;
+                        }
+                        return false;
+                    }
+                });
+
+                popup.show();
+
+            }
+        });
     }
 
     @Override

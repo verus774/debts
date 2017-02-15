@@ -55,4 +55,11 @@ public class DebtLab {
     public static void deleteAll() {
         new Delete().from(Debt.class).execute();
     }
+
+    public static void deleteById(long id) {
+        new Delete()
+                .from(Debt.class)
+                .where("Id=?", id)
+                .execute();
+    }
 }
