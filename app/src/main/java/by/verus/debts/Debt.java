@@ -20,6 +20,7 @@ public class Debt extends Model {
 
     public Debt() {
         super();
+        mDate = new Date();
     }
 
     public Debt(String name, int sum, Date date) {

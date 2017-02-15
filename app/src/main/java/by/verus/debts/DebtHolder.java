@@ -1,11 +1,13 @@
 package by.verus.debts;
 
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
-public class DebtHolder extends RecyclerView.ViewHolder {
+public class DebtHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
     private Debt mDebt;
     private TextView mNameTextView;
     private TextView mSumTextView;
@@ -20,6 +22,8 @@ public class DebtHolder extends RecyclerView.ViewHolder {
         mSumTextView = (TextView) itemView.findViewById(R.id.list_item_debt_sum_text_view);
         mDateTextView = (TextView) itemView.findViewById(R.id.list_item_debt_date_text_view);
         mMoreTextView = (TextView) itemView.findViewById(R.id.list_item_debt_more_text_view);
+
+        itemView.setOnClickListener(this);
     }
 
     public void bindDebt(Debt debt) {
@@ -30,4 +34,10 @@ public class DebtHolder extends RecyclerView.ViewHolder {
         mDateTextView.setText(mDebt.getDate().toString());
     }
 
+    @Override
+    public void onClick(View v) {
+        Context context = v.getContext();
+        Intent intent = DebtAddActivity.newIntent(context, mDebt.getId());
+        context.startActivity(intent);
+    }
 }

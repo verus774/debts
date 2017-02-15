@@ -38,9 +38,18 @@ public class DebtAddFragment extends Fragment implements DatePickerDialog.OnDate
 
     private final static int CONTACT_PICKER = 1;
     private static final String DIALOG_DATE = "DialogDate";
+    private static final String ARG_DEBT_ID = "debt_id";
 
 
     public DebtAddFragment() {
+    }
+
+    public static DebtAddFragment newInstance(long crimeId) {
+        Bundle args = new Bundle();
+        args.putLong(ARG_DEBT_ID, crimeId);
+        DebtAddFragment fragment = new DebtAddFragment();
+        fragment.setArguments(args);
+        return fragment;
     }
 
     @Override
@@ -71,7 +80,17 @@ public class DebtAddFragment extends Fragment implements DatePickerDialog.OnDate
             }
         });
 
-        mDebt = new Debt();
+        long debtId = getArguments().getLong(ARG_DEBT_ID);
+
+        if (debtId != 0) {
+            mDebt = DebtLab.getById(debtId);
+
+            mDebtNameEditText.append(mDebt.getName());
+            mDebtSumEditText.append(String.valueOf(mDebt.getSum()));
+            mDebtDateButton.setText(mDebt.getDate().toString());
+        } else {
+            mDebt = new Debt();
+        }
 
         mAwesomeValidation = new AwesomeValidation(BASIC);
         mAwesomeValidation.addValidation(mDebtNameEditText, RegexTemplate.NOT_EMPTY, getString(R.string.err_required));
@@ -134,4 +153,5 @@ public class DebtAddFragment extends Fragment implements DatePickerDialog.OnDate
         mDebt.setDate(newDate);
         mDebtDateButton.setText(newDate.toString());
     }
+
 }
