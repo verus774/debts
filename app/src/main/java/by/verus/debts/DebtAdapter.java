@@ -69,9 +69,8 @@ public class DebtAdapter extends RecyclerView.Adapter<DebtAdapter.DebtHolder> {
             mDebt = debt;
 
             mNameTextView.setText(mDebt.getName());
-            mSumTextView.setText(formatSum(mDebt.getSum()));
-//            mSumTextView.setText(String.format(Locale.US, "%.2f", mDebt.getSum()));
-            mDateTextView.setText(mDebt.getDate().toString());
+            mSumTextView.setText(String.format(Locale.getDefault(), "%.2f", mDebt.getSum()));
+            mDateTextView.setText(DateUtils.getStrFromDate(mDebt.getDate()));
 
             mMoreTextView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -106,13 +105,6 @@ public class DebtAdapter extends RecyclerView.Adapter<DebtAdapter.DebtHolder> {
             Intent intent = DebtAddActivity.newIntent(context, mDebt.getId());
             context.startActivity(intent);
         }
-    }
-
-    public static String formatSum(float sum) {
-        if (sum == (long) sum)
-            return String.format(Locale.US, "%d", (long) sum);
-        else
-            return String.format("%s", sum);
     }
 
 }

@@ -68,8 +68,7 @@ public class DebtAddFragment extends Fragment implements DatePickerDialog.OnDate
 
 
         mDebtDateButton = (Button) view.findViewById(R.id.debt_date_button);
-        Date date = new Date();
-        mDebtDateButton.setText(date.toString());
+        mDebtDateButton.setText(DateUtils.getStrFromDate(new Date()));
         mDebtDateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -86,7 +85,7 @@ public class DebtAddFragment extends Fragment implements DatePickerDialog.OnDate
 
             mDebtNameEditText.append(mDebt.getName());
             mDebtSumEditText.append(String.valueOf(mDebt.getSum()));
-            mDebtDateButton.setText(mDebt.getDate().toString());
+            mDebtDateButton.setText(DateUtils.getStrFromDate(mDebt.getDate()));
         } else {
             mDebt = new Debt();
         }
@@ -147,7 +146,7 @@ public class DebtAddFragment extends Fragment implements DatePickerDialog.OnDate
         Date newDate = c.getTime();
 
         mDebt.setDate(newDate);
-        mDebtDateButton.setText(newDate.toString());
+        mDebtDateButton.setText(DateUtils.getStrFromDate(newDate));
     }
 
     private boolean isValidFields() {
