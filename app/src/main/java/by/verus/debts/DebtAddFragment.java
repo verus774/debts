@@ -34,7 +34,6 @@ public class DebtAddFragment extends Fragment implements DatePickerDialog.OnDate
     private Button mDebtDateButton;
     private Button mDebtSaveButton;
     private ImageButton mPickContactImageButton;
-    private AwesomeValidation mAwesomeValidation;
 
     private final static int CONTACT_PICKER = 1;
     private static final String DIALOG_DATE = "DialogDate";
@@ -92,17 +91,14 @@ public class DebtAddFragment extends Fragment implements DatePickerDialog.OnDate
             mDebt = new Debt();
         }
 
-        mAwesomeValidation = new AwesomeValidation(BASIC);
-        mAwesomeValidation.addValidation(mDebtNameEditText, RegexTemplate.NOT_EMPTY, getString(R.string.err_required));
-        mAwesomeValidation.addValidation(mDebtSumEditText, RegexTemplate.NOT_EMPTY, getString(R.string.err_required));
 
         mDebtSaveButton = (Button) view.findViewById(R.id.debt_save_button);
         mDebtSaveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (mAwesomeValidation.validate()) {
+                if (isValidFields()) {
                     mDebt.setName(mDebtNameEditText.getText().toString());
-                    mDebt.setSum(Integer.parseInt(mDebtSumEditText.getText().toString()));
+                    mDebt.setSum(Float.parseFloat(mDebtSumEditText.getText().toString()));
 
                     DebtLab.save(mDebt);
 
@@ -152,6 +148,14 @@ public class DebtAddFragment extends Fragment implements DatePickerDialog.OnDate
 
         mDebt.setDate(newDate);
         mDebtDateButton.setText(newDate.toString());
+    }
+
+    private boolean isValidFields() {
+        AwesomeValidation mAwesomeValidation = new AwesomeValidation(BASIC);
+        mAwesomeValidation.addValidation(mDebtNameEditText, RegexTemplate.NOT_EMPTY, getString(R.string.err_required));
+        mAwesomeValidation.addValidation(mDebtSumEditText, RegexTemplate.NOT_EMPTY, getString(R.string.err_required));
+
+        return mAwesomeValidation.validate();
     }
 
 }

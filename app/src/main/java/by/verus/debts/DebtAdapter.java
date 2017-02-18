@@ -12,6 +12,7 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import java.util.List;
+import java.util.Locale;
 
 public class DebtAdapter extends RecyclerView.Adapter<DebtAdapter.DebtHolder> {
     private List<Debt> mDebts;
@@ -68,7 +69,8 @@ public class DebtAdapter extends RecyclerView.Adapter<DebtAdapter.DebtHolder> {
             mDebt = debt;
 
             mNameTextView.setText(mDebt.getName());
-            mSumTextView.setText(String.valueOf(mDebt.getSum()));
+            mSumTextView.setText(formatSum(mDebt.getSum()));
+//            mSumTextView.setText(String.format(Locale.US, "%.2f", mDebt.getSum()));
             mDateTextView.setText(mDebt.getDate().toString());
 
             mMoreTextView.setOnClickListener(new View.OnClickListener() {
@@ -104,6 +106,13 @@ public class DebtAdapter extends RecyclerView.Adapter<DebtAdapter.DebtHolder> {
             Intent intent = DebtAddActivity.newIntent(context, mDebt.getId());
             context.startActivity(intent);
         }
+    }
+
+    public static String formatSum(float sum) {
+        if (sum == (long) sum)
+            return String.format(Locale.US, "%d", (long) sum);
+        else
+            return String.format("%s", sum);
     }
 
 }

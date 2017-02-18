@@ -3,16 +3,19 @@ package by.verus.debts;
 
 import com.activeandroid.Model;
 import com.activeandroid.annotation.Column;
+import com.activeandroid.annotation.Table;
 
 import java.util.Date;
 
+
+@Table(name = "debts")
 public class Debt extends Model {
 
     @Column(name = "name")
     private String mName;
 
     @Column(name = "sum")
-    private int mSum;
+    private float mSum;
 
     @Column(name = "date", index = true)
     private Date mDate;
@@ -39,11 +42,11 @@ public class Debt extends Model {
         mName = name;
     }
 
-    public int getSum() {
+    public float getSum() {
         return mSum;
     }
 
-    public void setSum(int sum) {
+    public void setSum(float sum) {
         mSum = sum;
     }
 
