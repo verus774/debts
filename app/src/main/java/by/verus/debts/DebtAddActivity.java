@@ -24,6 +24,8 @@ public class DebtAddActivity extends AppCompatActivity {
                     .commit();
         }
 
+        setTitle(R.string.activity_debt_add_title);
+
     }
 
     public static Intent newIntent(Context context) {

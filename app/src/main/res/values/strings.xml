@@ -15,4 +15,7 @@
     <string name="success_debt_deleted">Success deleted</string>
     <string name="success_debt_saved">Debt saved</string>
 
+    <string name="activity_debt_add_title">New debt</string>
+    <string name="activity_debt_add_pager_title">Edit debt</string>
+
 </resources>
