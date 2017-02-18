@@ -102,7 +102,7 @@ public class DebtAdapter extends RecyclerView.Adapter<DebtAdapter.DebtHolder> {
         @Override
         public void onClick(View v) {
             Context context = v.getContext();
-            Intent intent = DebtAddActivity.newIntent(context, mDebt.getId());
+            Intent intent = DebtAddPagerActivity.newIntent(context, mDebt.getId());
             context.startActivity(intent);
         }
     }
