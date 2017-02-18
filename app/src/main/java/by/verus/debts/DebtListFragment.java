@@ -53,7 +53,7 @@ public class DebtListFragment extends Fragment {
         mAddDebtFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), DebtAddActivity.class);
+                Intent intent = DebtAddActivity.newIntent(getActivity());
                 startActivity(intent);
             }
         });
