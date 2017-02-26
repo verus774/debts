@@ -3,6 +3,7 @@ package by.verus.debts;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -16,6 +17,7 @@ import java.util.Locale;
 
 public class DebtAdapter extends RecyclerView.Adapter<DebtAdapter.DebtHolder> {
     private List<Debt> mDebts;
+    private Context mContext;
 
 
     public DebtAdapter(List<Debt> debts) {
@@ -26,6 +28,7 @@ public class DebtAdapter extends RecyclerView.Adapter<DebtAdapter.DebtHolder> {
     public DebtHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
         View view = layoutInflater.inflate(R.layout.list_item_debt, parent, false);
+        mContext = view.getContext();
         return new DebtHolder(view);
     }
 
@@ -70,6 +73,10 @@ public class DebtAdapter extends RecyclerView.Adapter<DebtAdapter.DebtHolder> {
 
             mNameTextView.setText(mDebt.getName());
             mSumTextView.setText(String.format(Locale.getDefault(), "%.2f", mDebt.getSum()));
+            mSumTextView.setTextColor(mDebt.isDebtor() ?
+                    ResourcesCompat.getColor(mContext.getResources(), R.color.item_debt_their_debt, null) :
+                    ResourcesCompat.getColor(mContext.getResources(), R.color.item_debt_my_debt, null)
+            );
             mDateTextView.setText(DateUtils.getStrFromDate(mDebt.getDate()));
 
             mMoreTextView.setOnClickListener(new View.OnClickListener() {

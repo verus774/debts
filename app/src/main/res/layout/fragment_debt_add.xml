@@ -50,6 +50,13 @@
 
     </android.support.design.widget.TextInputLayout>
 
+    <android.support.v7.widget.SwitchCompat
+        android:text="Debtor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/debtor_switch"
+        android:checked="true" />
+
     <Button
         android:id="@+id/debt_date_button"
         android:layout_width="wrap_content"

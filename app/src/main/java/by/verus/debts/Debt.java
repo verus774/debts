@@ -20,17 +20,22 @@ public class Debt extends Model {
     @Column(name = "date", index = true)
     private Date mDate;
 
+    @Column(name = "debtor")
+    private boolean mDebtor;
+
 
     public Debt() {
         super();
         mDate = new Date();
     }
 
-    public Debt(String name, int sum, Date date) {
+
+    public Debt(String name, int sum, boolean debtor) {
         super();
 
         mName = name;
         mSum = sum;
+        mDebtor = debtor;
         mDate = new Date();
     }
 
@@ -56,6 +61,14 @@ public class Debt extends Model {
 
     public void setDate(Date date) {
         mDate = date;
+    }
+
+    public boolean isDebtor() {
+        return mDebtor;
+    }
+
+    public void setDebtor(boolean debtor) {
+        mDebtor = debtor;
     }
 
     @Override

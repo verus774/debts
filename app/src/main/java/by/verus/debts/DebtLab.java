@@ -43,6 +43,7 @@ public class DebtLab {
                 newDebt.setName("Vasya " + i);
                 newDebt.setSum(i * 100);
                 newDebt.setDate(date);
+                newDebt.setDebtor(((i % 2) == 0));
 
                 save(newDebt);
             }

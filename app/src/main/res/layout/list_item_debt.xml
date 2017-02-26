@@ -22,7 +22,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/list_item_debt_name_text_view"
         android:textColor="@android:color/black"
-        tools:text="1000" />
+        tools:text="1000"
+        android:textStyle="normal|bold" />
 
     <TextView
         android:id="@+id/list_item_debt_date_text_view"

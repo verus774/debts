@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v7.widget.SwitchCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,8 +33,7 @@ public class DebtAddFragment extends Fragment implements DatePickerDialog.OnDate
     private EditText mDebtNameEditText;
     private EditText mDebtSumEditText;
     private Button mDebtDateButton;
-    private Button mDebtSaveButton;
-    private ImageButton mPickContactImageButton;
+    private SwitchCompat mDebtorSwitch;
 
     private final static int CONTACT_PICKER = 1;
     private static final String DIALOG_DATE = "DialogDate";
@@ -65,14 +65,16 @@ public class DebtAddFragment extends Fragment implements DatePickerDialog.OnDate
         mDebtNameEditText = (EditText) view.findViewById(R.id.debt_name_edit_text);
         mDebtSumEditText = (EditText) view.findViewById(R.id.debt_sum_edit_text);
 
-        mPickContactImageButton = (ImageButton) view.findViewById(R.id.pick_contact_image_button);
-        mPickContactImageButton.setOnClickListener(new View.OnClickListener() {
+        ImageButton pickContactImageButton = (ImageButton) view.findViewById(R.id.pick_contact_image_button);
+        pickContactImageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 pickContact();
             }
         });
 
+        mDebtorSwitch = (SwitchCompat) view.findViewById(R.id.debtor_switch);
+        mDebtorSwitch.setChecked(true);
 
         mDebtDateButton = (Button) view.findViewById(R.id.debt_date_button);
         mDebtDateButton.setText(DateUtils.getStrFromDate(new Date()));
@@ -93,18 +95,19 @@ public class DebtAddFragment extends Fragment implements DatePickerDialog.OnDate
             mDebtNameEditText.append(mDebt.getName());
             mDebtSumEditText.append(String.valueOf(mDebt.getSum()));
             mDebtDateButton.setText(DateUtils.getStrFromDate(mDebt.getDate()));
+            mDebtorSwitch.setChecked(mDebt.isDebtor());
         } else {
             mDebt = new Debt();
         }
 
-
-        mDebtSaveButton = (Button) view.findViewById(R.id.debt_save_button);
-        mDebtSaveButton.setOnClickListener(new View.OnClickListener() {
+        Button debtSaveButton = (Button) view.findViewById(R.id.debt_save_button);
+        debtSaveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (isValidFields()) {
                     mDebt.setName(mDebtNameEditText.getText().toString());
                     mDebt.setSum(Float.parseFloat(mDebtSumEditText.getText().toString()));
+                    mDebt.setDebtor(mDebtorSwitch.isChecked());
 
                     DebtLab.save(mDebt);
 
