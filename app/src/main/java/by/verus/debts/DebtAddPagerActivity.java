@@ -48,8 +48,6 @@ public class DebtAddPagerActivity extends AppCompatActivity {
             }
         }
 
-        setTitle(R.string.activity_debt_add_pager_title);
-
     }
 
     public static Intent newIntent(Context context, long debtId) {

@@ -29,10 +29,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".DebtAddActivity"
+            android:label="@string/activity_debt_add_title"
             android:parentActivityName=".DebtListActivity" />
-        <activity android:name=".DebtAddPagerActivity"></activity>
+
+        <activity
+            android:name=".DebtAddPagerActivity"
+            android:label="@string/activity_debt_add_pager_title"
+            android:parentActivityName=".DebtListActivity" />
+
     </application>
 
 </manifest>
