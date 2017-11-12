@@ -25,7 +25,7 @@ public class DebtAddPagerActivity extends AppCompatActivity {
 
         long crimeId = getIntent().getLongExtra(EXTRA_DEBT_ID, 0);
 
-        mViewPager = (ViewPager) findViewById(R.id.activity_debt_pager_view_pager);
+        mViewPager = findViewById(R.id.activity_debt_pager_view_pager);
         mDebts = DebtLab.getAll();
         FragmentManager fm = getSupportFragmentManager();
         mViewPager.setAdapter(new FragmentStatePagerAdapter(fm) {
@@ -42,7 +42,7 @@ public class DebtAddPagerActivity extends AppCompatActivity {
         });
 
         for (int i = 0; i < mDebts.size(); i++) {
-            if (mDebts.get(i).getId().equals(crimeId)) {
+            if (mDebts.get(i).getId() == crimeId) {
                 mViewPager.setCurrentItem(i);
                 break;
             }

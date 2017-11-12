@@ -1,42 +1,39 @@
 package by.verus.debts;
 
 
-import com.activeandroid.Model;
-import com.activeandroid.annotation.Column;
-import com.activeandroid.annotation.Table;
+import android.arch.persistence.room.ColumnInfo;
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
 
 import java.util.Date;
 
 
-@Table(name = "debts")
-public class Debt extends Model {
+@Entity(tableName = "debts")
+public class Debt {
 
-    @Column(name = "name")
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "id")
+    private long mId;
+
+    @ColumnInfo(name = "name")
     private String mName;
 
-    @Column(name = "sum")
+    @ColumnInfo(name = "sum")
     private float mSum;
 
-    @Column(name = "date", index = true)
+    @ColumnInfo(name = "date")
     private Date mDate;
 
-    @Column(name = "debtor")
+    @ColumnInfo(name = "debtor")
     private boolean mDebtor;
 
 
-    public Debt() {
-        super();
-        mDate = new Date();
+    public boolean isDebtor() {
+        return mDebtor;
     }
 
-
-    public Debt(String name, int sum, boolean debtor) {
-        super();
-
-        mName = name;
-        mSum = sum;
+    public void setDebtor(boolean debtor) {
         mDebtor = debtor;
-        mDate = new Date();
     }
 
     public String getName() {
@@ -63,12 +60,12 @@ public class Debt extends Model {
         mDate = date;
     }
 
-    public boolean isDebtor() {
-        return mDebtor;
+    public long getId() {
+        return mId;
     }
 
-    public void setDebtor(boolean debtor) {
-        mDebtor = debtor;
+    public void setId(long id) {
+        this.mId = id;
     }
 
     @Override

@@ -39,17 +39,17 @@ public class DebtListFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_debt_list, container, false);
 
-        Toolbar toolbar = (Toolbar) view.findViewById(R.id.toolbar);
+        Toolbar toolbar = view.findViewById(R.id.toolbar);
         ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
 
-        mDebtRecyclerView = (RecyclerView) view.findViewById(R.id.debt_recycler_view);
+        mDebtRecyclerView = view.findViewById(R.id.debt_recycler_view);
         LinearLayoutManager lm = new LinearLayoutManager(getActivity());
         mDebtRecyclerView.setLayoutManager(lm);
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(getActivity(), lm.getOrientation());
         mDebtRecyclerView.addItemDecoration(dividerItemDecoration);
         updateList();
 
-        mAddDebtFab = (FloatingActionButton) view.findViewById(R.id.add_debt_fab);
+        mAddDebtFab = view.findViewById(R.id.add_debt_fab);
         mAddDebtFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -81,7 +81,7 @@ public class DebtListFragment extends Fragment {
                 updateList();
                 return true;
             case R.id.action_generate_debts:
-                DebtLab.generateDebts(10);
+                DebtLab.generateDebts();
                 updateList();
                 return true;
             default:

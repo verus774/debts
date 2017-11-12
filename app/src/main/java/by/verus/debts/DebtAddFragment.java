@@ -62,10 +62,10 @@ public class DebtAddFragment extends Fragment implements DatePickerDialog.OnDate
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_debt_add, container, false);
 
-        mDebtNameEditText = (EditText) view.findViewById(R.id.debt_name_edit_text);
-        mDebtSumEditText = (EditText) view.findViewById(R.id.debt_sum_edit_text);
+        mDebtNameEditText = view.findViewById(R.id.debt_name_edit_text);
+        mDebtSumEditText = view.findViewById(R.id.debt_sum_edit_text);
 
-        ImageButton pickContactImageButton = (ImageButton) view.findViewById(R.id.pick_contact_image_button);
+        ImageButton pickContactImageButton = view.findViewById(R.id.pick_contact_image_button);
         pickContactImageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -73,10 +73,10 @@ public class DebtAddFragment extends Fragment implements DatePickerDialog.OnDate
             }
         });
 
-        mDebtorSwitch = (SwitchCompat) view.findViewById(R.id.debtor_switch);
+        mDebtorSwitch = view.findViewById(R.id.debtor_switch);
         mDebtorSwitch.setChecked(true);
 
-        mDebtDateButton = (Button) view.findViewById(R.id.debt_date_button);
+        mDebtDateButton = view.findViewById(R.id.debt_date_button);
         mDebtDateButton.setText(DateUtils.getStrFromDate(new Date()));
         mDebtDateButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -98,9 +98,10 @@ public class DebtAddFragment extends Fragment implements DatePickerDialog.OnDate
             mDebtorSwitch.setChecked(mDebt.isDebtor());
         } else {
             mDebt = new Debt();
+            mDebt.setDate(new Date());
         }
 
-        Button debtSaveButton = (Button) view.findViewById(R.id.debt_save_button);
+        Button debtSaveButton = view.findViewById(R.id.debt_save_button);
         debtSaveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -109,7 +110,11 @@ public class DebtAddFragment extends Fragment implements DatePickerDialog.OnDate
                     mDebt.setSum(Float.parseFloat(mDebtSumEditText.getText().toString()));
                     mDebt.setDebtor(mDebtorSwitch.isChecked());
 
-                    DebtLab.save(mDebt);
+                    if (mDebt.getId() != 0) {
+                        DebtLab.update(mDebt);
+                    } else {
+                        DebtLab.save(mDebt);
+                    }
 
                     getActivity().finish();
                 }
@@ -126,7 +131,10 @@ public class DebtAddFragment extends Fragment implements DatePickerDialog.OnDate
 
     private String getContactName(Intent data) {
         Uri contactData = data.getData();
-        Cursor cursor = getActivity().getContentResolver().query(contactData, null, null, null, null);
+        Cursor cursor = null;
+        if (contactData != null) {
+            cursor = getActivity().getContentResolver().query(contactData, null, null, null, null);
+        }
 
         if (cursor != null) {
             if (cursor.moveToFirst()) {

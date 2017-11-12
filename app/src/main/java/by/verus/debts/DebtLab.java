@@ -1,10 +1,7 @@
 package by.verus.debts;
 
 
-import com.activeandroid.ActiveAndroid;
-import com.activeandroid.query.Delete;
-import com.activeandroid.query.Select;
-
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -12,56 +9,49 @@ import java.util.List;
 public class DebtLab {
 
     public static List<Debt> getAll() {
-        return new Select()
-                .from(Debt.class)
-                .orderBy("date DESC")
-                .execute();
+        return DebtApplication.get().getDatabase().debtDao().getAll();
     }
 
     public static Debt getById(long id) {
-        return new Select()
-                .from(Debt.class)
-                .where("Id = ?", id)
-                .executeSingle();
+        return DebtApplication.get().getDatabase().debtDao().getById(id);
     }
 
     public static void save(Debt debt) {
-        debt.save();
+        DebtApplication.get().getDatabase().debtDao().insert(debt);
     }
 
-    public static void generateDebts(int count) {
-        Calendar calendar = Calendar.getInstance();
+    public static void saveAll(List<Debt> debts) {
+        DebtApplication.get().getDatabase().debtDao().insertAll(debts);
+    }
 
-        ActiveAndroid.beginTransaction();
-        try {
-            for (int i = 1; i <= count; i++) {
-                calendar.add(Calendar.DATE, -2);
-                Date date = calendar.getTime();
-
-                Debt newDebt = new Debt();
-
-                newDebt.setName("Vasya " + i);
-                newDebt.setSum(i * 100);
-                newDebt.setDate(date);
-                newDebt.setDebtor(((i % 2) == 0));
-
-                save(newDebt);
-            }
-            ActiveAndroid.setTransactionSuccessful();
-        } finally {
-            ActiveAndroid.endTransaction();
-        }
-
+    public static void update(Debt debt) {
+        DebtApplication.get().getDatabase().debtDao().update(debt);
     }
 
     public static void deleteAll() {
-        new Delete().from(Debt.class).execute();
+        DebtApplication.get().getDatabase().debtDao().deleteAll();
     }
 
     public static void deleteById(long id) {
-        new Delete()
-                .from(Debt.class)
-                .where("Id=?", id)
-                .execute();
+        DebtApplication.get().getDatabase().debtDao().deleteById(id);
+    }
+
+    public static void generateDebts() {
+        Calendar calendar = Calendar.getInstance();
+        List<Debt> debts = new ArrayList<>();
+
+        for (int i = 1; i <= 10; i++) {
+            calendar.add(Calendar.DATE, -2);
+            Date date = calendar.getTime();
+
+            Debt debt = new Debt();
+            debt.setName("Vasya " + i);
+            debt.setSum(i * 100);
+            debt.setDate(date);
+            debt.setDebtor(((i % 2) == 0));
+            debts.add(debt);
+        }
+
+        saveAll(debts);
     }
 }
