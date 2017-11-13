@@ -11,5 +11,7 @@ import by.verus.debts.dao.DebtDao;
 @Database(entities = {Debt.class}, version = 1)
 @TypeConverters({DateTypeConverter.class})
 public abstract class AppDatabase extends RoomDatabase {
+    public static final String DATABASE_NAME = "debts.db";
+
     public abstract DebtDao debtDao();
 }

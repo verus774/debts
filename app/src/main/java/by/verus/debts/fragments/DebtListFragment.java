@@ -1,5 +1,6 @@
-package by.verus.debts;
+package by.verus.debts.fragments;
 
+import android.arch.lifecycle.Observer;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -17,13 +18,19 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import by.verus.debts.Debt;
+import by.verus.debts.DebtAdapter;
+import by.verus.debts.DebtAddActivity;
+import by.verus.debts.DebtLab;
+import by.verus.debts.R;
 
 
 public class DebtListFragment extends Fragment {
     private RecyclerView mDebtRecyclerView;
     private DebtAdapter mAdapter;
-    private FloatingActionButton mAddDebtFab;
 
 
     public DebtListFragment() {
@@ -33,6 +40,17 @@ public class DebtListFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
+
+        mAdapter = new DebtAdapter(new ArrayList<Debt>());
+
+        DebtLab.getAll().observe(this, new Observer<List<Debt>>() {
+            @Override
+            public void onChanged(@Nullable List<Debt> debts) {
+                if (debts != null) {
+                    mAdapter.setDebtList(debts);
+                }
+            }
+        });
     }
 
     @Override
@@ -47,10 +65,10 @@ public class DebtListFragment extends Fragment {
         mDebtRecyclerView.setLayoutManager(lm);
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(getActivity(), lm.getOrientation());
         mDebtRecyclerView.addItemDecoration(dividerItemDecoration);
-        updateList();
+        mDebtRecyclerView.setAdapter(mAdapter);
 
-        mAddDebtFab = view.findViewById(R.id.add_debt_fab);
-        mAddDebtFab.setOnClickListener(new View.OnClickListener() {
+        FloatingActionButton addDebtFab = view.findViewById(R.id.add_debt_fab);
+        addDebtFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = DebtAddActivity.newIntent(getActivity());
@@ -59,12 +77,6 @@ public class DebtListFragment extends Fragment {
         });
 
         return view;
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        updateList();
     }
 
     @Override
@@ -78,21 +90,13 @@ public class DebtListFragment extends Fragment {
         switch (item.getItemId()) {
             case R.id.action_clear_all:
                 DebtLab.deleteAll();
-                updateList();
                 return true;
             case R.id.action_generate_debts:
                 DebtLab.generateDebts();
-                updateList();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
-
     }
 
-    private void updateList() {
-        List<Debt> debts = DebtLab.getAll();
-        mAdapter = new DebtAdapter(debts);
-        mDebtRecyclerView.setAdapter(mAdapter);
-    }
 }

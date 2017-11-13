@@ -11,6 +11,8 @@ import android.support.v7.app.AppCompatActivity;
 
 import java.util.List;
 
+import by.verus.debts.fragments.DebtAddFragment;
+
 public class DebtAddPagerActivity extends AppCompatActivity {
     private static final String EXTRA_DEBT_ID = "by.verus.debts.debt_id";
 
@@ -26,7 +28,7 @@ public class DebtAddPagerActivity extends AppCompatActivity {
         long crimeId = getIntent().getLongExtra(EXTRA_DEBT_ID, 0);
 
         mViewPager = findViewById(R.id.activity_debt_pager_view_pager);
-        mDebts = DebtLab.getAll();
+        mDebts = DebtLab.getAllSync();
         FragmentManager fm = getSupportFragmentManager();
         mViewPager.setAdapter(new FragmentStatePagerAdapter(fm) {
             @Override

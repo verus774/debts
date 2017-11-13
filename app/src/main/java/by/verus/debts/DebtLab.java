@@ -1,6 +1,8 @@
 package by.verus.debts;
 
 
+import android.arch.lifecycle.LiveData;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -8,8 +10,12 @@ import java.util.List;
 
 public class DebtLab {
 
-    public static List<Debt> getAll() {
+    public static LiveData<List<Debt>> getAll() {
         return DebtApplication.get().getDatabase().debtDao().getAll();
+    }
+
+    public static List<Debt> getAllSync() {
+        return DebtApplication.get().getDatabase().debtDao().getAllSync();
     }
 
     public static Debt getById(long id) {

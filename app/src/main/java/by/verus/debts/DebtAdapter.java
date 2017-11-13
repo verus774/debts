@@ -24,6 +24,11 @@ public class DebtAdapter extends RecyclerView.Adapter<DebtAdapter.DebtHolder> {
         mDebts = debts;
     }
 
+    public void setDebtList(List<Debt> debts) {
+        mDebts = debts;
+        notifyDataSetChanged();
+    }
+
     @Override
     public DebtHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
@@ -60,10 +65,10 @@ public class DebtAdapter extends RecyclerView.Adapter<DebtAdapter.DebtHolder> {
         public DebtHolder(View itemView) {
             super(itemView);
 
-            mNameTextView = (TextView) itemView.findViewById(R.id.list_item_debt_name_text_view);
-            mSumTextView = (TextView) itemView.findViewById(R.id.list_item_debt_sum_text_view);
-            mDateTextView = (TextView) itemView.findViewById(R.id.list_item_debt_date_text_view);
-            mMoreTextView = (TextView) itemView.findViewById(R.id.list_item_debt_more_text_view);
+            mNameTextView = itemView.findViewById(R.id.list_item_debt_name_text_view);
+            mSumTextView = itemView.findViewById(R.id.list_item_debt_sum_text_view);
+            mDateTextView = itemView.findViewById(R.id.list_item_debt_date_text_view);
+            mMoreTextView = itemView.findViewById(R.id.list_item_debt_more_text_view);
 
             itemView.setOnClickListener(this);
         }

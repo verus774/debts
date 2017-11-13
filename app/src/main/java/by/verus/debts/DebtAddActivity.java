@@ -7,6 +7,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 
+import by.verus.debts.fragments.DebtAddFragment;
+
 public class DebtAddActivity extends AppCompatActivity {
 
     @Override
