@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
 import by.verus.debts.db.AppDatabase;
+import by.verus.debts.db.DatabaseMockUtils;
 
 import static by.verus.debts.db.AppDatabase.DATABASE_NAME;
 
@@ -38,7 +39,7 @@ public class DebtApplication extends Application {
         boolean isFirstRun = prefs.getBoolean("first_run", true);
 
         if (isFirstRun) {
-            DebtLab.generateDebts();
+            DatabaseMockUtils.populateMockDataAsync();
 
             SharedPreferences.Editor editor = prefs.edit();
             editor.putBoolean("first_run", false);

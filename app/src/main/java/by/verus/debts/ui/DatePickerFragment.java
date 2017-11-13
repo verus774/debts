@@ -1,4 +1,4 @@
-package by.verus.debts.fragments;
+package by.verus.debts.ui;
 
 
 import android.app.DatePickerDialog;

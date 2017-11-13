@@ -1,4 +1,4 @@
-package by.verus.debts;
+package by.verus.debts.ui;
 
 import android.content.Context;
 import android.content.Intent;
@@ -11,8 +11,9 @@ import android.support.v7.app.AppCompatActivity;
 
 import java.util.List;
 
+import by.verus.debts.DebtLab;
+import by.verus.debts.R;
 import by.verus.debts.db.entity.Debt;
-import by.verus.debts.fragments.DebtAddFragment;
 
 public class DebtAddPagerActivity extends AppCompatActivity {
     private static final String EXTRA_DEBT_ID = "by.verus.debts.debt_id";

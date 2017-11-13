@@ -1,11 +1,11 @@
-package by.verus.debts;
+package by.verus.debts.ui;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 
-import by.verus.debts.fragments.DebtListFragment;
+import by.verus.debts.R;
 
 public class DebtListActivity extends AppCompatActivity {
 

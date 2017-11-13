@@ -3,9 +3,6 @@ package by.verus.debts;
 
 import android.arch.lifecycle.LiveData;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 import by.verus.debts.db.entity.Debt;
@@ -44,22 +41,4 @@ public class DebtLab {
         DebtApplication.get().getDatabase().debtDao().deleteById(id);
     }
 
-    public static void generateDebts() {
-        Calendar calendar = Calendar.getInstance();
-        List<Debt> debts = new ArrayList<>();
-
-        for (int i = 1; i <= 10; i++) {
-            calendar.add(Calendar.DATE, -2);
-            Date date = calendar.getTime();
-
-            Debt debt = new Debt();
-            debt.setName("Vasya " + i);
-            debt.setSum(i * 100);
-            debt.setDate(date);
-            debt.setDebtor(((i % 2) == 0));
-            debts.add(debt);
-        }
-
-        saveAll(debts);
-    }
 }

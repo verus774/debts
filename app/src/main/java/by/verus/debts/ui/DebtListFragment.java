@@ -1,4 +1,4 @@
-package by.verus.debts.fragments;
+package by.verus.debts.ui;
 
 import android.arch.lifecycle.Observer;
 import android.content.Intent;
@@ -22,9 +22,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import by.verus.debts.DebtAdapter;
-import by.verus.debts.DebtAddActivity;
 import by.verus.debts.DebtLab;
 import by.verus.debts.R;
+import by.verus.debts.db.DatabaseMockUtils;
 import by.verus.debts.db.entity.Debt;
 
 
@@ -92,7 +92,7 @@ public class DebtListFragment extends Fragment {
                 DebtLab.deleteAll();
                 return true;
             case R.id.action_generate_debts:
-                DebtLab.generateDebts();
+                DatabaseMockUtils.populateMockDataAsync();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
