@@ -1,10 +1,12 @@
-package by.verus.debts;
+package by.verus.debts.utils;
 
 
 import android.content.Context;
 import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
 import android.view.View;
+
+import by.verus.debts.R;
 
 public class Utils {
 

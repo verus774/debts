@@ -5,7 +5,9 @@ import android.arch.persistence.room.Room;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
-import static by.verus.debts.AppDatabase.DATABASE_NAME;
+import by.verus.debts.db.AppDatabase;
+
+import static by.verus.debts.db.AppDatabase.DATABASE_NAME;
 
 
 public class DebtApplication extends Application {

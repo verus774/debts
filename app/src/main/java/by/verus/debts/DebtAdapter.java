@@ -15,6 +15,9 @@ import android.widget.TextView;
 import java.util.List;
 import java.util.Locale;
 
+import by.verus.debts.db.entity.Debt;
+import by.verus.debts.utils.DateUtils;
+
 public class DebtAdapter extends RecyclerView.Adapter<DebtAdapter.DebtHolder> {
     private List<Debt> mDebts;
     private Context mContext;

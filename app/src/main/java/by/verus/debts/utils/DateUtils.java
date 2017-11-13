@@ -1,4 +1,4 @@
-package by.verus.debts;
+package by.verus.debts.utils;
 
 
 import java.text.ParseException;

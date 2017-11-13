@@ -1,4 +1,4 @@
-package by.verus.debts.dao;
+package by.verus.debts.db.dao;
 
 import android.arch.lifecycle.LiveData;
 import android.arch.persistence.room.Dao;
@@ -9,7 +9,7 @@ import android.arch.persistence.room.Update;
 
 import java.util.List;
 
-import by.verus.debts.Debt;
+import by.verus.debts.db.entity.Debt;
 
 import static android.arch.persistence.room.OnConflictStrategy.REPLACE;
 

@@ -24,10 +24,10 @@ import com.basgeekball.awesomevalidation.utility.RegexTemplate;
 import java.util.Calendar;
 import java.util.Date;
 
-import by.verus.debts.DateUtils;
-import by.verus.debts.Debt;
 import by.verus.debts.DebtLab;
 import by.verus.debts.R;
+import by.verus.debts.db.entity.Debt;
+import by.verus.debts.utils.DateUtils;
 
 import static android.app.Activity.RESULT_OK;
 import static com.basgeekball.awesomevalidation.ValidationStyle.BASIC;

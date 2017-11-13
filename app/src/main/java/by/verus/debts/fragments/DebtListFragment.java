@@ -21,11 +21,11 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import java.util.List;
 
-import by.verus.debts.Debt;
 import by.verus.debts.DebtAdapter;
 import by.verus.debts.DebtAddActivity;
 import by.verus.debts.DebtLab;
 import by.verus.debts.R;
+import by.verus.debts.db.entity.Debt;
 
 
 public class DebtListFragment extends Fragment {

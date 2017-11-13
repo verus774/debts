@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import java.util.List;
 
+import by.verus.debts.db.entity.Debt;
 import by.verus.debts.fragments.DebtAddFragment;
 
 public class DebtAddPagerActivity extends AppCompatActivity {

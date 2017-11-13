@@ -8,6 +8,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import by.verus.debts.db.entity.Debt;
+
 public class DebtLab {
 
     public static LiveData<List<Debt>> getAll() {
