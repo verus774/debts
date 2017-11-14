@@ -29,6 +29,12 @@ public class Debt implements IDebt {
     @ColumnInfo(name = "debtor")
     private boolean mDebtor;
 
+    public Debt(String name, float sum, Date date, boolean debtor) {
+        mName = name;
+        mSum = sum;
+        mDate = date;
+        mDebtor = debtor;
+    }
 
     @Override
     public boolean isDebtor() {

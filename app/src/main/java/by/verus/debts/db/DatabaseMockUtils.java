@@ -8,12 +8,12 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-import by.verus.debts.DebtApplication;
+import by.verus.debts.App;
 import by.verus.debts.db.entity.Debt;
 
 public class DatabaseMockUtils {
 
-    private static AppDatabase db = DebtApplication.get().getDatabase();
+    private static AppDatabase db = App.getInstance().getDatabase();
 
     public static void populateMockDataSync() {
         populateWithTestData(db);
@@ -61,14 +61,13 @@ public class DatabaseMockUtils {
         Calendar calendar = Calendar.getInstance();
 
         for (int i = 1; i <= count; i++) {
+            String name = "Vasya " + i;
+            float sum = i * 100;
             calendar.add(Calendar.DATE, -2);
             Date date = calendar.getTime();
+            boolean debtor = (i % 2) == 0;
 
-            Debt debt = new Debt();
-            debt.setName("Vasya " + i);
-            debt.setSum(i * 100);
-            debt.setDate(date);
-            debt.setDebtor(((i % 2) == 0));
+            Debt debt = new Debt(name, sum, date, debtor);
             debts.add(debt);
         }
 

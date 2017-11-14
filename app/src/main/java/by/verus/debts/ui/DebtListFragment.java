@@ -21,7 +21,6 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import java.util.List;
 
-import by.verus.debts.DebtAdapter;
 import by.verus.debts.DebtLab;
 import by.verus.debts.R;
 import by.verus.debts.db.DatabaseMockUtils;

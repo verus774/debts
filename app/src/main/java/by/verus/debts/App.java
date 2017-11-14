@@ -11,11 +11,11 @@ import by.verus.debts.db.DatabaseMockUtils;
 import static by.verus.debts.db.AppDatabase.DATABASE_NAME;
 
 
-public class DebtApplication extends Application {
-    public static DebtApplication instance;
+public class App extends Application {
+    private static App instance;
     private AppDatabase database;
 
-    public static DebtApplication get() {
+    public static App getInstance() {
         return instance;
     }
 

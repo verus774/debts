@@ -1,4 +1,4 @@
-package by.verus.debts;
+package by.verus.debts.ui;
 
 
 import android.content.Context;
@@ -15,8 +15,9 @@ import android.widget.TextView;
 import java.util.List;
 import java.util.Locale;
 
+import by.verus.debts.DebtLab;
+import by.verus.debts.R;
 import by.verus.debts.db.entity.Debt;
-import by.verus.debts.ui.DebtAddPagerActivity;
 import by.verus.debts.utils.DateUtils;
 
 public class DebtAdapter extends RecyclerView.Adapter<DebtAdapter.DebtHolder> {
