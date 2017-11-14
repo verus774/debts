@@ -2,11 +2,11 @@ package by.verus.debts.ui;
 
 import android.support.v4.app.Fragment;
 
-public class DebtListActivity extends FragmentActivity {
+public class TabActivity extends FragmentActivity {
 
     @Override
     protected Fragment createFragment() {
-        return new DebtListFragment();
+        return new TabFragment();
     }
 
 }

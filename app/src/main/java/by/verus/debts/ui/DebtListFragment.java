@@ -1,16 +1,12 @@
 package by.verus.debts.ui;
 
 import android.arch.lifecycle.Observer;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -56,24 +52,12 @@ public class DebtListFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_debt_list, container, false);
 
-        Toolbar toolbar = view.findViewById(R.id.toolbar);
-        ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
-
         mDebtRecyclerView = view.findViewById(R.id.debt_recycler_view);
         LinearLayoutManager lm = new LinearLayoutManager(getActivity());
         mDebtRecyclerView.setLayoutManager(lm);
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(getActivity(), lm.getOrientation());
         mDebtRecyclerView.addItemDecoration(dividerItemDecoration);
         mDebtRecyclerView.setAdapter(mAdapter);
-
-        FloatingActionButton addDebtFab = view.findViewById(R.id.add_debt_fab);
-        addDebtFab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = DebtAddActivity.newIntent(getActivity());
-                startActivity(intent);
-            }
-        });
 
         return view;
     }
