@@ -1,6 +1,5 @@
 package by.verus.debts.ui;
 
-import android.arch.lifecycle.Observer;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -14,16 +13,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import by.verus.debts.DebtLab;
 import by.verus.debts.R;
-import by.verus.debts.db.entity.Debt;
 
 
 public class TabFragment extends Fragment {
-    private DebtAdapter mAdapter;
     private TabLayout mTabLayout;
     private ViewPager mViewPager;
 
@@ -34,17 +27,6 @@ public class TabFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
-
-        mAdapter = new DebtAdapter(new ArrayList<Debt>());
-
-        DebtLab.getAll().observe(this, new Observer<List<Debt>>() {
-            @Override
-            public void onChanged(@Nullable List<Debt> debts) {
-                if (debts != null) {
-                    mAdapter.setDebtList(debts);
-                }
-            }
-        });
     }
 
     @Override
@@ -74,8 +56,8 @@ public class TabFragment extends Fragment {
 
     private void setupViewPager(ViewPager viewPager) {
         TabAdapter tabAdapter = new TabAdapter(getChildFragmentManager());
-        tabAdapter.addFragment(new DebtListFragment(), "I owe");
-        tabAdapter.addFragment(new DebtListFragment(), "Owe me");
+        tabAdapter.addFragment(new MyDebtListFragment(), "My debts");
+        tabAdapter.addFragment(new TheirDebtListFragment(), "Their debts");
 
         viewPager.setAdapter(tabAdapter);
     }

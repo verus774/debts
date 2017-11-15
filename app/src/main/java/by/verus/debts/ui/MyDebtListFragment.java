@@ -23,12 +23,12 @@ import by.verus.debts.db.DatabaseMockUtils;
 import by.verus.debts.db.entity.Debt;
 
 
-public class DebtListFragment extends Fragment {
+public class MyDebtListFragment extends Fragment {
     private RecyclerView mDebtRecyclerView;
     private DebtAdapter mAdapter;
 
 
-    public DebtListFragment() {
+    public MyDebtListFragment() {
     }
 
     @Override
@@ -38,7 +38,7 @@ public class DebtListFragment extends Fragment {
 
         mAdapter = new DebtAdapter(new ArrayList<Debt>());
 
-        DebtLab.getAll().observe(this, new Observer<List<Debt>>() {
+        DebtLab.getMyDebts().observe(this, new Observer<List<Debt>>() {
             @Override
             public void onChanged(@Nullable List<Debt> debts) {
                 if (debts != null) {
@@ -50,7 +50,7 @@ public class DebtListFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_debt_list, container, false);
+        View view = inflater.inflate(R.layout.fragment_my_debt_list, container, false);
 
         mDebtRecyclerView = view.findViewById(R.id.debt_recycler_view);
         LinearLayoutManager lm = new LinearLayoutManager(getActivity());

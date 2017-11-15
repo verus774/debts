@@ -21,6 +21,12 @@ public interface DebtDao {
     @Query("SELECT * FROM debts ORDER BY date DESC")
     List<Debt> getAllSync();
 
+    @Query("SELECT * FROM debts WHERE debtor = 0 ORDER BY date DESC")
+    LiveData<List<Debt>> getMyDebts();
+
+    @Query("SELECT * FROM debts WHERE debtor = 1 ORDER BY date DESC")
+    LiveData<List<Debt>> getTheirDebts();
+
     @Insert(onConflict = REPLACE)
     void insert(Debt debt);
 

@@ -16,6 +16,14 @@ public class DebtLab {
         return debtDao.getAll();
     }
 
+    public static LiveData<List<Debt>> getMyDebts() {
+        return debtDao.getMyDebts();
+    }
+
+    public static LiveData<List<Debt>> getTheirDebts() {
+        return debtDao.getTheirDebts();
+    }
+
     public static List<Debt> getAllSync() {
         return debtDao.getAllSync();
     }
