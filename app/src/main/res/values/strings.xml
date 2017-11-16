@@ -18,4 +18,7 @@
     <string name="activity_debt_add_title">New debt</string>
     <string name="activity_debt_add_pager_title">Edit debt</string>
 
+    <string name="tab1">My debts</string>
+    <string name="tab2">Their debts</string>
+
 </resources>

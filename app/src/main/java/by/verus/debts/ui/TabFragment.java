@@ -36,11 +36,29 @@ public class TabFragment extends Fragment {
         Toolbar toolbar = view.findViewById(R.id.toolbar);
         ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
 
-        mViewPager = view.findViewById(R.id.viewPager);
-        setupViewPager(mViewPager);
-
         mTabLayout = view.findViewById(R.id.tabLayout);
-        mTabLayout.setupWithViewPager(mViewPager);
+        mViewPager = view.findViewById(R.id.viewPager);
+
+        TabAdapter tabAdapter = new TabAdapter(getChildFragmentManager(), mTabLayout.getTabCount());
+        mViewPager.setAdapter(tabAdapter);
+
+        mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(mTabLayout));
+        mTabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                mViewPager.setCurrentItem(tab.getPosition());
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
 
         FloatingActionButton addDebtFab = view.findViewById(R.id.add_debt_fab);
         addDebtFab.setOnClickListener(new View.OnClickListener() {
@@ -52,14 +70,6 @@ public class TabFragment extends Fragment {
         });
 
         return view;
-    }
-
-    private void setupViewPager(ViewPager viewPager) {
-        TabAdapter tabAdapter = new TabAdapter(getChildFragmentManager());
-        tabAdapter.addFragment(new MyDebtListFragment(), "My debts");
-        tabAdapter.addFragment(new TheirDebtListFragment(), "Their debts");
-
-        viewPager.setAdapter(tabAdapter);
     }
 
 }
