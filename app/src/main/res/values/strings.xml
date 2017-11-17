@@ -20,5 +20,6 @@
 
     <string name="tab1">My debts</string>
     <string name="tab2">Their debts</string>
+    <string name="tab3">Debtors</string>
 
 </resources>

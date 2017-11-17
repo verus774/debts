@@ -10,6 +10,7 @@ import android.arch.persistence.room.Update;
 import java.util.List;
 
 import by.verus.debts.db.entity.Debt;
+import by.verus.debts.model.Debtor;
 
 import static android.arch.persistence.room.OnConflictStrategy.REPLACE;
 
@@ -26,6 +27,9 @@ public interface DebtDao {
 
     @Query("SELECT * FROM debts WHERE debtor = 1 ORDER BY date DESC")
     LiveData<List<Debt>> getTheirDebts();
+
+    @Query("SELECT name, debtor, SUM(sum) AS sum FROM debts GROUP BY name ORDER BY name ASC")
+    LiveData<List<Debtor>> getDebtors();
 
     @Insert(onConflict = REPLACE)
     void insert(Debt debt);

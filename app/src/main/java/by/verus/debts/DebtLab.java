@@ -7,6 +7,7 @@ import java.util.List;
 
 import by.verus.debts.db.dao.DebtDao;
 import by.verus.debts.db.entity.Debt;
+import by.verus.debts.model.Debtor;
 
 public class DebtLab {
 
@@ -22,6 +23,10 @@ public class DebtLab {
 
     public static LiveData<List<Debt>> getTheirDebts() {
         return debtDao.getTheirDebts();
+    }
+
+    public static LiveData<List<Debtor>> getDebtors() {
+        return debtDao.getDebtors();
     }
 
     public static List<Debt> getAllSync() {

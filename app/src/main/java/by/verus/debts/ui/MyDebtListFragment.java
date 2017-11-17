@@ -8,9 +8,6 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -19,7 +16,6 @@ import java.util.List;
 
 import by.verus.debts.DebtLab;
 import by.verus.debts.R;
-import by.verus.debts.db.DatabaseMockUtils;
 import by.verus.debts.db.entity.Debt;
 
 
@@ -60,26 +56,6 @@ public class MyDebtListFragment extends Fragment {
         mDebtRecyclerView.setAdapter(mAdapter);
 
         return view;
-    }
-
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.menu_debt_list, menu);
-        super.onCreateOptionsMenu(menu, inflater);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.action_clear_all:
-                DebtLab.deleteAll();
-                return true;
-            case R.id.action_generate_debts:
-                DatabaseMockUtils.populateMockDataAsync();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
     }
 
 }

@@ -9,11 +9,17 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import by.verus.debts.DebtLab;
 import by.verus.debts.R;
+import by.verus.debts.db.DatabaseMockUtils;
 
 
 public class TabFragment extends Fragment {
@@ -60,6 +66,8 @@ public class TabFragment extends Fragment {
             }
         });
 
+        Log.d("EEE", DebtLab.getDebtors().toString());
+
         FloatingActionButton addDebtFab = view.findViewById(R.id.add_debt_fab);
         addDebtFab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,6 +78,26 @@ public class TabFragment extends Fragment {
         });
 
         return view;
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.menu_debt_list, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_clear_all:
+                DebtLab.deleteAll();
+                return true;
+            case R.id.action_generate_debts:
+                DatabaseMockUtils.populateMockDataAsync();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
 }
