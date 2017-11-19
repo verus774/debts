@@ -32,4 +32,8 @@ public class TabAdapter extends FragmentPagerAdapter {
         return mNumOfTabs;
     }
 
+    public Fragment getFragment(int key) {
+        return getItem(key);
+    }
+
 }

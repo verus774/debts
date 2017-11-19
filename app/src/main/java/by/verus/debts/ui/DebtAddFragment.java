@@ -43,6 +43,7 @@ public class DebtAddFragment extends Fragment implements DatePickerDialog.OnDate
     private final static int CONTACT_PICKER = 1;
     private static final String DIALOG_DATE = "DialogDate";
     private static final String ARG_DEBT_ID = "debt_id";
+    private static final String ARG_IS_DEBTOR = "is_debtor";
 
 
     public DebtAddFragment() {
@@ -51,6 +52,14 @@ public class DebtAddFragment extends Fragment implements DatePickerDialog.OnDate
     public static DebtAddFragment newInstance(long crimeId) {
         Bundle args = new Bundle();
         args.putLong(ARG_DEBT_ID, crimeId);
+        DebtAddFragment fragment = new DebtAddFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
+
+    public static DebtAddFragment newInstance(boolean isDebtor) {
+        Bundle args = new Bundle();
+        args.putBoolean(ARG_IS_DEBTOR, isDebtor);
         DebtAddFragment fragment = new DebtAddFragment();
         fragment.setArguments(args);
         return fragment;
@@ -93,6 +102,7 @@ public class DebtAddFragment extends Fragment implements DatePickerDialog.OnDate
         });
 
         long debtId = getArguments().getLong(ARG_DEBT_ID);
+        boolean isDebtor = getArguments().getBoolean(ARG_IS_DEBTOR);
 
         if (debtId != 0) {
             mDebt = DebtLab.getById(debtId);
@@ -102,6 +112,8 @@ public class DebtAddFragment extends Fragment implements DatePickerDialog.OnDate
             mDebtDateButton.setText(DateUtils.getStrFromDate(mDebt.getDate()));
             mDebtorSwitch.setChecked(mDebt.isDebtor());
         }
+
+        mDebtorSwitch.setChecked(isDebtor);
 
         Button debtSaveButton = view.findViewById(R.id.debt_save_button);
         debtSaveButton.setOnClickListener(new View.OnClickListener() {

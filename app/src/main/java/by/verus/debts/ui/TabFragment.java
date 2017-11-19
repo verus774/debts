@@ -9,7 +9,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -66,13 +65,17 @@ public class TabFragment extends Fragment {
             }
         });
 
-        Log.d("EEE", DebtLab.getDebtors().toString());
-
         FloatingActionButton addDebtFab = view.findViewById(R.id.add_debt_fab);
         addDebtFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = DebtAddActivity.newIntent(getActivity());
+                int index = mViewPager.getCurrentItem();
+                TabAdapter adapter = ((TabAdapter) mViewPager.getAdapter());
+                Fragment fragment = adapter.getFragment(index);
+
+                boolean isDebtor = fragment instanceof TheirDebtListFragment;
+
+                Intent intent = DebtAddActivity.newIntent(getActivity(), isDebtor);
                 startActivity(intent);
             }
         });
