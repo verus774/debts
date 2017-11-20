@@ -7,10 +7,14 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.SwitchCompat;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -73,7 +77,14 @@ public class DebtAddFragment extends Fragment implements DatePickerDialog.OnDate
     }
 
     @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        setHasOptionsMenu(true);
         View view = inflater.inflate(R.layout.fragment_debt_add, container, false);
 
         mDebtNameEditText = view.findViewById(R.id.debt_name_edit_text);
@@ -114,32 +125,6 @@ public class DebtAddFragment extends Fragment implements DatePickerDialog.OnDate
         }
 
         mDebtorSwitch.setChecked(isDebtor);
-
-        Button debtSaveButton = view.findViewById(R.id.debt_save_button);
-        debtSaveButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (isValidFields()) {
-                    String name = mDebtNameEditText.getText().toString();
-                    float sum = Float.parseFloat(mDebtSumEditText.getText().toString());
-                    Date date = new Date();
-                    boolean debtor = mDebtorSwitch.isChecked();
-
-                    if (mDebt != null) {
-                        mDebt.setName(name);
-                        mDebt.setSum(sum);
-                        mDebt.setDebtor(debtor);
-
-                        DebtLab.update(mDebt);
-                    } else {
-                        mDebt = new Debt(name, sum, date, debtor);
-                        DebtLab.save(mDebt);
-                    }
-
-                    getActivity().finish();
-                }
-            }
-        });
 
         return view;
     }
@@ -193,6 +178,41 @@ public class DebtAddFragment extends Fragment implements DatePickerDialog.OnDate
         mAwesomeValidation.addValidation(mDebtSumEditText, RegexTemplate.NOT_EMPTY, getString(R.string.err_required));
 
         return mAwesomeValidation.validate();
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.menu_debt_add, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu_save_debt:
+                if (isValidFields()) {
+                    String name = mDebtNameEditText.getText().toString();
+                    float sum = Float.parseFloat(mDebtSumEditText.getText().toString());
+                    Date date = new Date();
+                    boolean debtor = mDebtorSwitch.isChecked();
+
+                    if (mDebt != null) {
+                        mDebt.setName(name);
+                        mDebt.setSum(sum);
+                        mDebt.setDebtor(debtor);
+
+                        DebtLab.update(mDebt);
+                    } else {
+                        mDebt = new Debt(name, sum, date, debtor);
+                        DebtLab.save(mDebt);
+                    }
+
+                    getActivity().finish();
+                }
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
 }

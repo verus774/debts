@@ -5,8 +5,11 @@
     <string name="menu_clear_all">Clear all</string>
     <string name="menu_generate_debts">Generate debts</string>
 
+    <string name="menu_save_debt">Save</string>
+
     <string name="hint_name">Name</string>
     <string name="hint_sum">Sum</string>
+    <string name="hint_debtor_switch">Debtor</string>
     <string name="save">Save</string>
 
     <string name="err_required">Required field</string>

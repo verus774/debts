@@ -51,11 +51,11 @@
     </android.support.design.widget.TextInputLayout>
 
     <android.support.v7.widget.SwitchCompat
-        android:text="Debtor"
+        android:id="@+id/debtor_switch"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/debtor_switch"
-        android:checked="true" />
+        android:checked="true"
+        android:text="@string/hint_debtor_switch" />
 
     <Button
         android:id="@+id/debt_date_button"
@@ -63,12 +63,5 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         tools:text="Date" />
-
-    <Button
-        android:id="@+id/debt_save_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="@string/save" />
 
 </LinearLayout>
