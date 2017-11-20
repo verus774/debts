@@ -115,6 +115,8 @@ public class DebtAddFragment extends Fragment implements DatePickerDialog.OnDate
         long debtId = getArguments().getLong(ARG_DEBT_ID);
         boolean isDebtor = getArguments().getBoolean(ARG_IS_DEBTOR);
 
+        mDebtorSwitch.setChecked(isDebtor);
+
         if (debtId != 0) {
             mDebt = DebtLab.getById(debtId);
 
@@ -123,8 +125,6 @@ public class DebtAddFragment extends Fragment implements DatePickerDialog.OnDate
             mDebtDateButton.setText(DateUtils.getStrFromDate(mDebt.getDate()));
             mDebtorSwitch.setChecked(mDebt.isDebtor());
         }
-
-        mDebtorSwitch.setChecked(isDebtor);
 
         return view;
     }
