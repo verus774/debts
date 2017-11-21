@@ -2,6 +2,7 @@ package by.verus.debts;
 
 
 import android.arch.lifecycle.LiveData;
+import android.os.AsyncTask;
 
 import java.util.List;
 
@@ -50,7 +51,15 @@ public class DebtLab {
     }
 
     public static void deleteAll() {
-        debtDao.deleteAll();
+        new DeleteAllAsync().execute();
+    }
+
+    private static class DeleteAllAsync extends AsyncTask<Void, Void, Void> {
+        @Override
+        protected Void doInBackground(final Void... params) {
+            debtDao.deleteAll();
+            return null;
+        }
     }
 
     public static void deleteById(long id) {
