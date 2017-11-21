@@ -4,6 +4,7 @@ import android.arch.lifecycle.Observer;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.util.DiffUtil;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -38,7 +39,12 @@ public class TheirDebtListFragment extends Fragment {
             @Override
             public void onChanged(@Nullable List<Debt> debts) {
                 if (debts != null) {
+                    DebtDiffUtilCallback debtDiffUtilCallback = new DebtDiffUtilCallback(mAdapter.getData(), debts);
+                    DiffUtil.DiffResult debtDiffResult = DiffUtil.calculateDiff(debtDiffUtilCallback);
+
                     mAdapter.setDebtList(debts);
+                    debtDiffResult.dispatchUpdatesTo(mAdapter);
+
                 }
             }
         });

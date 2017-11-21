@@ -26,12 +26,15 @@ public class DebtorAdapter extends RecyclerView.Adapter<DebtorAdapter.DebtorHold
 
     public void setDebtList(List<Debtor> debtors) {
         mDebtors = debtors;
-        notifyDataSetChanged();
     }
 
     public void setDebtorList(List<Debtor> debtors) {
         mDebtors = debtors;
         notifyDataSetChanged();
+    }
+
+    public List<Debtor> getData() {
+        return mDebtors;
     }
 
     @Override

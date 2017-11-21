@@ -32,7 +32,6 @@ public class DebtAdapter extends RecyclerView.Adapter<DebtAdapter.DebtHolder> {
 
     public void setDebtList(List<Debt> debts) {
         mDebts = debts;
-        notifyDataSetChanged();
     }
 
     @Override
@@ -57,6 +56,10 @@ public class DebtAdapter extends RecyclerView.Adapter<DebtAdapter.DebtHolder> {
     public void deleteDebt(int position) {
         mDebts.remove(position);
         notifyItemRemoved(position);
+    }
+
+    public List<Debt> getData() {
+        return mDebts;
     }
 
 
