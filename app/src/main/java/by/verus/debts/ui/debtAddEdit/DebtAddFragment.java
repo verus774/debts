@@ -1,4 +1,4 @@
-package by.verus.debts.ui;
+package by.verus.debts.ui.debtAddEdit;
 
 
 import android.app.DatePickerDialog;
@@ -28,8 +28,8 @@ import com.basgeekball.awesomevalidation.utility.RegexTemplate;
 import java.util.Calendar;
 import java.util.Date;
 
-import by.verus.debts.DebtLab;
 import by.verus.debts.R;
+import by.verus.debts.db.DebtLab;
 import by.verus.debts.db.entity.Debt;
 import by.verus.debts.utils.DateUtils;
 

@@ -1,4 +1,4 @@
-package by.verus.debts.ui;
+package by.verus.debts.ui.debtList;
 
 
 import android.content.Context;
@@ -15,9 +15,10 @@ import android.widget.TextView;
 import java.util.List;
 import java.util.Locale;
 
-import by.verus.debts.DebtLab;
 import by.verus.debts.R;
+import by.verus.debts.db.DebtLab;
 import by.verus.debts.db.entity.Debt;
+import by.verus.debts.ui.DebtEditPagerActivity;
 import by.verus.debts.utils.DateUtils;
 
 public class DebtAdapter extends RecyclerView.Adapter<DebtAdapter.DebtHolder> {
@@ -119,7 +120,7 @@ public class DebtAdapter extends RecyclerView.Adapter<DebtAdapter.DebtHolder> {
         @Override
         public void onClick(View v) {
             Context context = v.getContext();
-            Intent intent = DebtAddPagerActivity.newIntent(context, mDebt.getId());
+            Intent intent = DebtEditPagerActivity.newIntent(context, mDebt.getId());
             context.startActivity(intent);
         }
     }

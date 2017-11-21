@@ -11,11 +11,12 @@ import android.support.v7.app.AppCompatActivity;
 
 import java.util.List;
 
-import by.verus.debts.DebtLab;
 import by.verus.debts.R;
+import by.verus.debts.db.DebtLab;
 import by.verus.debts.db.entity.Debt;
+import by.verus.debts.ui.debtAddEdit.DebtAddFragment;
 
-public class DebtAddPagerActivity extends AppCompatActivity {
+public class DebtEditPagerActivity extends AppCompatActivity {
     private static final String EXTRA_DEBT_ID = "by.verus.debts.debt_id";
 
     private ViewPager mViewPager;
@@ -25,7 +26,7 @@ public class DebtAddPagerActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_debt_add_pager);
+        setContentView(R.layout.activity_debt_edit_pager);
 
         long crimeId = getIntent().getLongExtra(EXTRA_DEBT_ID, 0);
 
@@ -55,7 +56,7 @@ public class DebtAddPagerActivity extends AppCompatActivity {
     }
 
     public static Intent newIntent(Context context, long debtId) {
-        Intent intent = new Intent(context, DebtAddPagerActivity.class);
+        Intent intent = new Intent(context, DebtEditPagerActivity.class);
         intent.putExtra(EXTRA_DEBT_ID, debtId);
         return intent;
     }

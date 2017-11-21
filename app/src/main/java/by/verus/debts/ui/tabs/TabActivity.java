@@ -1,6 +1,8 @@
-package by.verus.debts.ui;
+package by.verus.debts.ui.tabs;
 
 import android.support.v4.app.Fragment;
+
+import by.verus.debts.ui.FragmentActivity;
 
 public class TabActivity extends FragmentActivity {
 

@@ -1,9 +1,13 @@
-package by.verus.debts.ui;
+package by.verus.debts.ui.tabs;
 
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+
+import by.verus.debts.ui.debtList.MyDebtListFragment;
+import by.verus.debts.ui.debtList.TheirDebtListFragment;
+import by.verus.debts.ui.debtorList.DebtorListFragment;
 
 public class TabAdapter extends FragmentPagerAdapter {
     private int mNumOfTabs;

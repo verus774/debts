@@ -1,4 +1,4 @@
-package by.verus.debts.ui;
+package by.verus.debts.ui.debtList;
 
 import android.arch.lifecycle.Observer;
 import android.os.Bundle;
@@ -14,17 +14,17 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import java.util.List;
 
-import by.verus.debts.DebtLab;
 import by.verus.debts.R;
+import by.verus.debts.db.DebtLab;
 import by.verus.debts.db.entity.Debt;
 
 
-public class TheirDebtListFragment extends Fragment {
+public class MyDebtListFragment extends Fragment {
     private RecyclerView mDebtRecyclerView;
     private DebtAdapter mAdapter;
 
 
-    public TheirDebtListFragment() {
+    public MyDebtListFragment() {
     }
 
     @Override
@@ -34,7 +34,7 @@ public class TheirDebtListFragment extends Fragment {
 
         mAdapter = new DebtAdapter(new ArrayList<Debt>());
 
-        DebtLab.getTheirDebts().observe(this, new Observer<List<Debt>>() {
+        DebtLab.getMyDebts().observe(this, new Observer<List<Debt>>() {
             @Override
             public void onChanged(@Nullable List<Debt> debts) {
                 if (debts != null) {
@@ -46,7 +46,7 @@ public class TheirDebtListFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_their_debt_list, container, false);
+        View view = inflater.inflate(R.layout.fragment_my_debt_list, container, false);
 
         mDebtRecyclerView = view.findViewById(R.id.debt_recycler_view);
         LinearLayoutManager lm = new LinearLayoutManager(getActivity());

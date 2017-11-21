@@ -1,4 +1,4 @@
-package by.verus.debts.ui;
+package by.verus.debts.ui.tabs;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,9 +16,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
-import by.verus.debts.DebtLab;
 import by.verus.debts.R;
 import by.verus.debts.db.DatabaseMockUtils;
+import by.verus.debts.db.DebtLab;
+import by.verus.debts.ui.debtAddEdit.DebtAddActivity;
+import by.verus.debts.ui.debtList.TheirDebtListFragment;
 
 
 public class TabFragment extends Fragment {

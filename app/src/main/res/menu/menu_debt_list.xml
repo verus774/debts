@@ -1,7 +1,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
       xmlns:app="http://schemas.android.com/apk/res-auto"
       xmlns:tools="http://schemas.android.com/tools"
-      tools:context="by.verus.debts.ui.TabActivity">
+    tools:context="by.verus.debts.ui.tabs.TabActivity">
 
     <item
         android:id="@+id/action_clear_all"

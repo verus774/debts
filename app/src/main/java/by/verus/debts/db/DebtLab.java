@@ -1,4 +1,4 @@
-package by.verus.debts;
+package by.verus.debts.db;
 
 
 import android.arch.lifecycle.LiveData;
@@ -6,6 +6,7 @@ import android.os.AsyncTask;
 
 import java.util.List;
 
+import by.verus.debts.App;
 import by.verus.debts.db.dao.DebtDao;
 import by.verus.debts.db.entity.Debt;
 import by.verus.debts.model.Debtor;

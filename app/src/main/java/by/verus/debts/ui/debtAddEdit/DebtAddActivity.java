@@ -1,9 +1,11 @@
-package by.verus.debts.ui;
+package by.verus.debts.ui.debtAddEdit;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+
+import by.verus.debts.ui.FragmentActivity;
 
 public class DebtAddActivity extends FragmentActivity {
     private static final String EXTRA_IS_DEBTOR = "by.verus.debts.is_debtor";

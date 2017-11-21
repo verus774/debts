@@ -1,4 +1,4 @@
-package by.verus.debts.ui;
+package by.verus.debts.ui.debtorList;
 
 import android.arch.lifecycle.Observer;
 import android.os.Bundle;
@@ -14,17 +14,17 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import java.util.List;
 
-import by.verus.debts.DebtLab;
 import by.verus.debts.R;
-import by.verus.debts.db.entity.Debt;
+import by.verus.debts.db.DebtLab;
+import by.verus.debts.model.Debtor;
 
 
-public class MyDebtListFragment extends Fragment {
-    private RecyclerView mDebtRecyclerView;
-    private DebtAdapter mAdapter;
+public class DebtorListFragment extends Fragment {
+    private RecyclerView mDebtorRecyclerView;
+    private DebtorAdapter mAdapter;
 
 
-    public MyDebtListFragment() {
+    public DebtorListFragment() {
     }
 
     @Override
@@ -32,28 +32,29 @@ public class MyDebtListFragment extends Fragment {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
 
-        mAdapter = new DebtAdapter(new ArrayList<Debt>());
+        mAdapter = new DebtorAdapter(new ArrayList<Debtor>());
 
-        DebtLab.getMyDebts().observe(this, new Observer<List<Debt>>() {
+        DebtLab.getDebtors().observe(this, new Observer<List<Debtor>>() {
             @Override
-            public void onChanged(@Nullable List<Debt> debts) {
-                if (debts != null) {
-                    mAdapter.setDebtList(debts);
+            public void onChanged(@Nullable List<Debtor> debtors) {
+                if (debtors != null) {
+                    mAdapter.setDebtorList(debtors);
                 }
             }
         });
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_my_debt_list, container, false);
+        View view = inflater.inflate(R.layout.fragment_debtor_list, container, false);
 
-        mDebtRecyclerView = view.findViewById(R.id.debt_recycler_view);
+        mDebtorRecyclerView = view.findViewById(R.id.debtor_recycler_view);
         LinearLayoutManager lm = new LinearLayoutManager(getActivity());
-        mDebtRecyclerView.setLayoutManager(lm);
+        mDebtorRecyclerView.setLayoutManager(lm);
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(getActivity(), lm.getOrientation());
-        mDebtRecyclerView.addItemDecoration(dividerItemDecoration);
-        mDebtRecyclerView.setAdapter(mAdapter);
+        mDebtorRecyclerView.addItemDecoration(dividerItemDecoration);
+        mDebtorRecyclerView.setAdapter(mAdapter);
 
         return view;
     }
